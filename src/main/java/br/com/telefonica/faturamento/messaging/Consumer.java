@@ -13,10 +13,10 @@ public class Consumer {
 
 	private static final Logger logger = LoggerFactory.getLogger(Consumer.class);
 	
-    @Value("${topic.name.consumer")
+    @Value("${topic.name.consumer}")
     private String topicName;
     
-    @KafkaListener(topics = "${topic.name.consumer}", groupId = "group_id")
+    @KafkaListener(topics = "${topic.name.consumer}", groupId = "${spring.kafka.consumer.group-id}")
     public void consume(ConsumerRecord<String, String> payload){
     	logger.info("Tópico: {}", topicName);
     	logger.info("key: {}", payload.key());
