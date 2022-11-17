@@ -1,50 +1,50 @@
 package br.com.telefonica.faturamento.api.service;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import br.com.telefonica.faturamento.api.exception.EntidadeEmUsoException;
+import br.com.telefonica.faturamento.api.exception.EntidadeNaoEncontradaException;
 import br.com.telefonica.faturamento.api.model.Billing;
+import br.com.telefonica.faturamento.api.model.BillingMongoDB;
+import br.com.telefonica.faturamento.api.repository.BillingMongoRepository;
 import br.com.telefonica.faturamento.api.repository.BillingRepository;
 
 @Service
 public class BillingService {
+
+	private static final String BILLING_EM_USO = "O Billing de código %d não pode ser removido, pois está em uso";
 	
 	@Autowired
 	BillingRepository billingRepository;
 	
-	public List<Billing> listAll() {
-		List<Billing> billigList = billingRepository.findAll();
-		return billigList;
-	}
+	@Autowired
+	BillingMongoRepository billingMongoRepository; 
 	
-	public Billing findById(Long billingId) {
-		Optional<Billing> billing = billingRepository.findById(billingId);
-		
-		if (billing.isPresent()) {
-			return billing.get();
+	public void deleteBilling(Integer billingId) {
+		try {
+			billingRepository.deleteById(billingId);
+		} catch (EmptyResultDataAccessException e) {
+			throw new EntidadeNaoEncontradaException(billingId);
+		} catch (DataIntegrityViolationException e) {
+			throw new EntidadeEmUsoException(String.format(BILLING_EM_USO, billingId));
 		}
-		return null;
-	}
-	
-	public void deleteBilling(Long billingId) {
-		billingRepository.deleteById(billingId);
 	}
 
-	
 	public Billing save(Billing billing) {
 		Billing billingSaved = billingRepository.save(billing);
 		return billingSaved;
 	}
 	
-	public Billing findOrFail(Long billingId) {
-		Billing billing = new Billing();
-		billing.setId(Long.valueOf(1));
-		billing.setName("Billing1");
-		
-		return billing;
+	public BillingMongoDB save(BillingMongoDB billingMongoDB) {
+		BillingMongoDB billingSaved = billingMongoRepository.save(billingMongoDB);
+		return billingSaved;
 	}
-		
+	
+	public Billing findOrFail(Integer billingId) {
+		return billingRepository.findById(billingId)
+				.orElseThrow(() -> new EntidadeNaoEncontradaException(billingId));
+	}
 }

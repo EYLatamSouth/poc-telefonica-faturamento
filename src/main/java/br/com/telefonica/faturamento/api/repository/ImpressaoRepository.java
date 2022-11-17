@@ -1,9 +1,11 @@
 package br.com.telefonica.faturamento.api.repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import br.com.telefonica.faturamento.api.model.Impressao;
 
-public interface ImpressaoRepository extends MongoRepository<Impressao, Long>{
+@Repository
+public interface ImpressaoRepository extends JpaRepository<Impressao, Integer>{
 
 }

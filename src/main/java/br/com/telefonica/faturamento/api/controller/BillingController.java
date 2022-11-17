@@ -16,37 +16,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.telefonica.faturamento.api.exception.EntidadeNaoEncontradaException;
 import br.com.telefonica.faturamento.api.model.Billing;
+import br.com.telefonica.faturamento.api.repository.BillingRepository;
 import br.com.telefonica.faturamento.api.service.BillingService;
+import br.com.telefonica.faturamento.messaging.Producer;
 
 @RestController
 @RequestMapping("/billings")
 public class BillingController {
 
+	
+	Producer producer;
+	
 	@Autowired
 	private BillingService billingService;
 	
+	@Autowired
+	private BillingRepository billingRepository;
+	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Billing> listAllBillings() {
-		return billingService.listAll();
+		return billingRepository.findAll();
 	}
 	
-	@GetMapping("/{billinId}")
-	public Billing findById(@PathVariable Long billingId) {
-		return billingService.findById(billingId);
-	}
-	
-	@DeleteMapping("/{billinId}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteBilling(@PathVariable Long billingId) {
-		billingService.deleteBilling(billingId);
-	}
-	
-	@PutMapping("/{billinId}")
-	public Billing updateBilling(@PathVariable Long billingId, @RequestBody Billing billing) {
-		Billing currentBilling = billingService.findOrFail(billingId);
-		BeanUtils.copyProperties(billing, currentBilling, "id");
-		return billingService.save(currentBilling);
+	@GetMapping("/{billingId}")
+	public Billing findById(@PathVariable Integer billingId) {
+		return billingService.findOrFail(billingId);
 	}
 	
 	@PostMapping
@@ -54,5 +50,22 @@ public class BillingController {
 	public Billing addNewBilling(@RequestBody Billing billing) {
 		Billing billingSaved = billingService.save(billing);
 		return billingSaved;
+	}
+	
+	@DeleteMapping("/{billingId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteBilling(@PathVariable Integer billingId) {
+		billingService.deleteBilling(billingId);
+	}
+	
+	@PutMapping("/{billingId}")
+	public Billing updateBilling(@PathVariable Integer billingId, @RequestBody Billing billing) {
+		Billing currentBilling = billingService.findOrFail(billingId);
+		BeanUtils.copyProperties(billing, currentBilling, "billing_id");
+		try {
+			return billingService.save(currentBilling);			
+		} catch (EntidadeNaoEncontradaException e) {
+			throw new EntidadeNaoEncontradaException(e.getMessage());
+		}
 	}
 }
