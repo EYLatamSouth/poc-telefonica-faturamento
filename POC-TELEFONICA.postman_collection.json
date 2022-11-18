@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "4aeca010-0c1f-496f-a260-917b5507f5fa",
+		"name": "POC-TELEFONICA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1346289"
+	},
+	"item": [
+		{
+			"name": "Postar um topico",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"billing_id\": \"107\",\t\r\n    \"customer_id\": \"1\",\r\n    \"billing_vencimento\": \"2022-11-30\",\r\n    \"billing_status\": \"2\",\r\n    \"billing_data_pgto\": \"2022-11-10\",\r\n    \"billing_valor_fatura\": \"1455.99\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/billings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"billings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar todos os Billings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/billings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"billings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Billing por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/billings/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"billings",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Billing",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/billings/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"billings",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Billing",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_id\": \"3\",\r\n    \"billing_vencimento\": \"2022-04-09\",\r\n    \"billing_status\": \"2\",\r\n    \"billing_data_pgto\": \"2021-11-17\",\r\n    \"billing_valor_fatura\": \"888.11\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/billings/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"billings",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Todas Impressoes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/impressao",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"impressao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Impressao por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/impressao/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"impressao",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Impressao",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/impressao/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"impressao",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
