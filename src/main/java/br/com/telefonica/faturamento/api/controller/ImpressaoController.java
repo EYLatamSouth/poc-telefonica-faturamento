@@ -36,7 +36,7 @@ public class ImpressaoController {
 		return impressaoService.findOrFail(impressaoId);
 	}
 	
-	@DeleteMapping("/{billinId}")
+	@DeleteMapping("/{impressaoId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteImpressao(@PathVariable Integer impressaoId) {
 		impressaoService.deletar(impressaoId);
