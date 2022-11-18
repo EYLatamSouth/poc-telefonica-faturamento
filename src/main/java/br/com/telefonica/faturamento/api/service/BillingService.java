@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.telefonica.faturamento.api.exception.EntidadeEmUsoException;
 import br.com.telefonica.faturamento.api.exception.EntidadeNaoEncontradaException;
-import br.com.telefonica.faturamento.api.model.Billing;
+import br.com.telefonica.faturamento.api.model.Faturamento;
 import br.com.telefonica.faturamento.api.model.BillingMongoDB;
 import br.com.telefonica.faturamento.api.repository.BillingMongoRepository;
 import br.com.telefonica.faturamento.api.repository.BillingRepository;
@@ -15,7 +15,7 @@ import br.com.telefonica.faturamento.api.repository.BillingRepository;
 @Service
 public class BillingService {
 
-	private static final String BILLING_EM_USO = "O Billing de código %d não pode ser removido, pois está em uso";
+	private static final String BILLING_EM_USO = "O Billing de código %b não pode ser removido, pois está em uso";
 	
 	@Autowired
 	BillingRepository billingRepository;
@@ -23,7 +23,7 @@ public class BillingService {
 	@Autowired
 	BillingMongoRepository billingMongoRepository; 
 	
-	public void deleteBilling(Integer billingId) {
+	public void deleteBilling(String billingId) {
 		try {
 			billingRepository.deleteById(billingId);
 		} catch (EmptyResultDataAccessException e) {
@@ -33,8 +33,8 @@ public class BillingService {
 		}
 	}
 
-	public Billing save(Billing billing) {
-		Billing billingSaved = billingRepository.save(billing);
+	public Faturamento save(Faturamento billing) {
+		Faturamento billingSaved = billingRepository.save(billing);
 		return billingSaved;
 	}
 	
@@ -43,7 +43,7 @@ public class BillingService {
 		return billingSaved;
 	}
 	
-	public Billing findOrFail(Integer billingId) {
+	public Faturamento findOrFail(String billingId) {
 		return billingRepository.findById(billingId)
 				.orElseThrow(() -> new EntidadeNaoEncontradaException(billingId));
 	}

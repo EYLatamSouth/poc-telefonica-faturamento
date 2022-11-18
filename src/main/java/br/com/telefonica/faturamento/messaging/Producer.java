@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import br.com.telefonica.faturamento.api.model.Billing;
+import br.com.telefonica.faturamento.api.model.Faturamento;
 import br.com.telefonica.faturamento.api.model.BillingMongoDB;
 
 @Service

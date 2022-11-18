@@ -32,13 +32,13 @@ public class ImpressaoController {
 	}
 	
 	@GetMapping("/{impressaoId}")
-	public Impressao findById(@PathVariable Integer impressaoId) {
+	public Impressao findById(@PathVariable String impressaoId) {
 		return impressaoService.findOrFail(impressaoId);
 	}
 	
 	@DeleteMapping("/{impressaoId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteImpressao(@PathVariable Integer impressaoId) {
+	public void deleteImpressao(@PathVariable String impressaoId) {
 		impressaoService.deletar(impressaoId);
 	}	
 }

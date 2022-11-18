@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.telefonica.faturamento.api.model.Impressao;
 
 @Repository
-public interface ImpressaoRepository extends JpaRepository<Impressao, Integer>{
+public interface ImpressaoRepository extends JpaRepository<Impressao, String>{
 
 }

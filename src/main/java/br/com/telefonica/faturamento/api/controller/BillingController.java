@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.telefonica.faturamento.api.exception.EntidadeNaoEncontradaException;
-import br.com.telefonica.faturamento.api.model.Billing;
+import br.com.telefonica.faturamento.api.model.Faturamento;
 import br.com.telefonica.faturamento.api.repository.BillingRepository;
 import br.com.telefonica.faturamento.api.service.BillingService;
 import br.com.telefonica.faturamento.messaging.Producer;
@@ -36,31 +36,31 @@ public class BillingController {
 	private BillingRepository billingRepository;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Billing> listAllBillings() {
+	public List<Faturamento> listAllBillings() {
 		return billingRepository.findAll();
 	}
 	
 	@GetMapping("/{billingId}")
-	public Billing findById(@PathVariable Integer billingId) {
+	public Faturamento findById(@PathVariable String billingId) {
 		return billingService.findOrFail(billingId);
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Billing addNewBilling(@RequestBody Billing billing) {
-		Billing billingSaved = billingService.save(billing);
+	public Faturamento addNewBilling(@RequestBody Faturamento billing) {
+		Faturamento billingSaved = billingService.save(billing);
 		return billingSaved;
 	}
 	
 	@DeleteMapping("/{billingId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteBilling(@PathVariable Integer billingId) {
+	public void deleteBilling(@PathVariable String billingId) {
 		billingService.deleteBilling(billingId);
 	}
 	
 	@PutMapping("/{billingId}")
-	public Billing updateBilling(@PathVariable Integer billingId, @RequestBody Billing billing) {
-		Billing currentBilling = billingService.findOrFail(billingId);
+	public Faturamento updateBilling(@PathVariable String billingId, @RequestBody Faturamento billing) {
+		Faturamento currentBilling = billingService.findOrFail(billingId);
 		BeanUtils.copyProperties(billing, currentBilling, "billing_id");
 		try {
 			return billingService.save(currentBilling);			

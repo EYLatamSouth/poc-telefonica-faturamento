@@ -18,9 +18,9 @@ public class ImpressaoService {
 	@Autowired
 	ImpressaoRepository impressaoRepository;
 	
-	private static final String IMPRESSAO_EM_USO = "A Impressao de código %d não pode ser removida, pois está em uso";
+	private static final String IMPRESSAO_EM_USO = "A Impressao de código %b não pode ser removida, pois está em uso";
 	
-	public Impressao findById(Integer impressaoId) {
+	public Impressao findById(String impressaoId) {
 		Optional<Impressao> impressao = impressaoRepository.findById(impressaoId);
 		
 		if (impressao.isPresent()) {
@@ -29,7 +29,7 @@ public class ImpressaoService {
 		return null;
 	}
 	
-	public void deletar(Integer impressaoId) {
+	public void deletar(String impressaoId) {
 		try {
 			impressaoRepository.deleteById(impressaoId);
 		} catch (EmptyResultDataAccessException e) {
@@ -39,7 +39,7 @@ public class ImpressaoService {
 		}
 	}	
 	
-	public Impressao findOrFail(Integer impressaoId) {
+	public Impressao findOrFail(String impressaoId) {
 		return impressaoRepository.findById(impressaoId)
 				.orElseThrow(() -> new EntidadeNaoEncontradaException(impressaoId));
 	}

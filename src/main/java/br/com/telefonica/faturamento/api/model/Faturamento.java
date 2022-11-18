@@ -1,7 +1,6 @@
 package br.com.telefonica.faturamento.api.model;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,48 +9,50 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Billing {
+public class Faturamento implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer billing_id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String billing_id;
 	
 	@Column(nullable = false)
-	private Integer customer_id;
+	private String customer_id;
 	
 	@Column(nullable = false)
-	private LocalDate billing_vencimento;
+	private String billing_vencimento;
 	
 	@Column(nullable = false)
 	private String billing_status;
 	
 	@Column(nullable = false)
-	private LocalDate billing_data_pgto;
+	private String billing_data_pgto;
 	
 	@Column(nullable = false)
-	private BigDecimal billing_valor_fatura;
+	private String billing_valor_fatura;
 
-	public Integer getBilling_id() {
+	public String getBilling_id() {
 		return billing_id;
 	}
 
-	public void setBilling_id(Integer billing_id) {
+	public void setBilling_id(String billing_id) {
 		this.billing_id = billing_id;
 	}
 
-	public Integer getCustomer_id() {
+	public String getCustomer_id() {
 		return customer_id;
 	}
 
-	public void setCustomer_id(Integer customer_id) {
+	public void setCustomer_id(String customer_id) {
 		this.customer_id = customer_id;
 	}
 
-	public LocalDate getBilling_vencimento() {
+	public String getBilling_vencimento() {
 		return billing_vencimento;
 	}
 
-	public void setBilling_vencimento(LocalDate billing_vencimento) {
+	public void setBilling_vencimento(String billing_vencimento) {
 		this.billing_vencimento = billing_vencimento;
 	}
 
@@ -63,19 +64,19 @@ public class Billing {
 		this.billing_status = billing_status;
 	}
 
-	public LocalDate getBilling_data_pgto() {
+	public String getBilling_data_pgto() {
 		return billing_data_pgto;
 	}
 
-	public void setBilling_data_pgto(LocalDate billing_data_pgto) {
+	public void setBilling_data_pgto(String billing_data_pgto) {
 		this.billing_data_pgto = billing_data_pgto;
 	}
 
-	public BigDecimal getBilling_valor_fatura() {
+	public String getBilling_valor_fatura() {
 		return billing_valor_fatura;
 	}
 
-	public void setBilling_valor_fatura(BigDecimal billing_valor_fatura) {
+	public void setBilling_valor_fatura(String billing_valor_fatura) {
 		this.billing_valor_fatura = billing_valor_fatura;
 	}
 }

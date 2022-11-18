@@ -9,6 +9,6 @@ public class EntidadeNaoEncontradaException extends RuntimeException{
 	}
 
 	public EntidadeNaoEncontradaException(Integer entidadeId) {
-		this(String.format("Não existe uma entidade com código %d", entidadeId));
+		this(String.format("Não existe uma entidade com código %b", entidadeId));
 	}
 }

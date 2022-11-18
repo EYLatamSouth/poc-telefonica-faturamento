@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.telefonica.faturamento.api.model.Billing;
+import br.com.telefonica.faturamento.api.model.Faturamento;
 import br.com.telefonica.faturamento.api.model.BillingMongoDB;
 import br.com.telefonica.faturamento.api.service.BillingService;
 
