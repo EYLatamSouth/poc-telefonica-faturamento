@@ -23,7 +23,7 @@ public class BillingService {
 	@Autowired
 	BillingMongoRepository billingMongoRepository; 
 	
-	public void deleteBilling(String billingId) {
+	public void deleteBilling(Integer billingId) {
 		try {
 			billingRepository.deleteById(billingId);
 		} catch (EmptyResultDataAccessException e) {
@@ -43,7 +43,7 @@ public class BillingService {
 		return billingSaved;
 	}
 	
-	public Faturamento findOrFail(String billingId) {
+	public Faturamento findOrFail(Integer billingId) {
 		return billingRepository.findById(billingId)
 				.orElseThrow(() -> new EntidadeNaoEncontradaException(billingId));
 	}

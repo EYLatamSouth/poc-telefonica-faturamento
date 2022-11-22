@@ -2,23 +2,19 @@ package br.com.telefonica.faturamento.api.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="BILLING")
 public class Faturamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String billing_id;
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer billing_id;
 	
 	@Column(nullable = false)
-	private String customer_id;
+	private Integer customer_id;
 	
 	@Column(nullable = false)
 	private String billing_vencimento;
@@ -32,19 +28,19 @@ public class Faturamento implements Serializable {
 	@Column(nullable = false)
 	private String billing_valor_fatura;
 
-	public String getBilling_id() {
+	public Integer getBilling_id() {
 		return billing_id;
 	}
 
-	public void setBilling_id(String billing_id) {
+	public void setBilling_id(Integer billing_id) {
 		this.billing_id = billing_id;
 	}
 
-	public String getCustomer_id() {
+	public Integer getCustomer_id() {
 		return customer_id;
 	}
 
-	public void setCustomer_id(String customer_id) {
+	public void setCustomer_id(Integer customer_id) {
 		this.customer_id = customer_id;
 	}
 

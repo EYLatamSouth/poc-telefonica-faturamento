@@ -41,7 +41,7 @@ public class BillingController {
 	}
 	
 	@GetMapping("/{billingId}")
-	public Faturamento findById(@PathVariable String billingId) {
+	public Faturamento findById(@PathVariable Integer billingId) {
 		return billingService.findOrFail(billingId);
 	}
 	
@@ -54,12 +54,12 @@ public class BillingController {
 	
 	@DeleteMapping("/{billingId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteBilling(@PathVariable String billingId) {
+	public void deleteBilling(@PathVariable Integer billingId) {
 		billingService.deleteBilling(billingId);
 	}
 	
 	@PutMapping("/{billingId}")
-	public Faturamento updateBilling(@PathVariable String billingId, @RequestBody Faturamento billing) {
+	public Faturamento updateBilling(@PathVariable Integer billingId, @RequestBody Faturamento billing) {
 		Faturamento currentBilling = billingService.findOrFail(billingId);
 		BeanUtils.copyProperties(billing, currentBilling, "billing_id");
 		try {

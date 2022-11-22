@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.telefonica.faturamento.api.model.Faturamento;
 
 @Repository
-public interface BillingRepository extends JpaRepository<Faturamento, String> {
+public interface BillingRepository extends JpaRepository<Faturamento, Integer> {
 	
 }
