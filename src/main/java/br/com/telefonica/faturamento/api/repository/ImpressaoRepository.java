@@ -1,4 +1,4 @@
-//package br.com.telefonica.faturamento.api.repository;
+package br.com.telefonica.faturamento.api.repository;//package br.com.telefonica.faturamento.api.repository;
 //
 //import org.springframework.data.jpa.repository.JpaRepository;
 //import org.springframework.stereotype.Repository;
