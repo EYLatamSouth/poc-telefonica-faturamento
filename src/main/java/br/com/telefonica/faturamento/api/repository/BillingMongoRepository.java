@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 import br.com.telefonica.faturamento.api.model.BillingMongoDB;
 
 @Repository
-public interface BillingMongoRepository extends MongoRepository<BillingMongoDB, Integer>{
-
-}
+public interface BillingMongoRepository extends MongoRepository<BillingMongoDB, Integer>{}
