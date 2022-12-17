@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/billings")
+@Service
 public class BillingControllerHexagonal {
 	@Autowired
 	private BillingServiceFaturamentoHexagonal billingService;
@@ -42,7 +44,7 @@ public class BillingControllerHexagonal {
 	}
 	
 	@PutMapping("/{billingId}")
-	public Faturamento updateBilling(@PathVariable Integer billingId, @RequestBody Faturamento billing) {
-		return billingService.updateBilling(billingId, billing);
+	public Faturamento updateBilling(@RequestBody Faturamento billing, @PathVariable Integer billingId) {
+		return billingService.updateBilling(billing, billingId);
 	}
 }

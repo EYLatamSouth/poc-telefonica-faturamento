@@ -16,5 +16,5 @@ public interface BillingServiceFaturamentoHexagonal {
 	public Faturamento save(Faturamento billing);
 	public Faturamento findOrFail(Integer billingId);
 	public List<Faturamento> findAll();
-	public Faturamento updateBilling(Integer billingId, Faturamento billing);
+	public Faturamento updateBilling(Faturamento billing, Integer billingId);
 }

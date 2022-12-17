@@ -38,7 +38,7 @@ public class BillingRepositoryFaturamentoImpl implements BillingServiceFaturamen
     }
 
     @Override
-    public Faturamento updateBilling(Integer billingId, Faturamento billing) {
+    public Faturamento updateBilling(Faturamento billing, Integer billingId) {
         Faturamento currentBilling = billingRepositoryFaturamentoHexagonal.findById(billingId)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException(billingId));
         BeanUtils.copyProperties(billing, currentBilling, "billing_id");
