@@ -1,10 +1,12 @@
 package br.com.telefonica.faturamento.api.repository;
 
 import br.com.telefonica.faturamento.api.exception.EntidadeNaoEncontradaException;
+import br.com.telefonica.faturamento.api.exception.FaturamentoStatusInvalidoException;
 import br.com.telefonica.faturamento.api.service.BillingServiceFaturamentoHexagonal;
 import br.com.telefonica.faturamento.api.model.Faturamento;
 import java.util.List;
 
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +24,14 @@ public class BillingRepositoryFaturamentoImpl implements BillingServiceFaturamen
     }
 
     @Override
-    public Faturamento save(Faturamento billing) {
-        return billingRepositoryFaturamentoHexagonal.save(billing);
+    public Faturamento save(Faturamento billing) throws Exception {
+        if (billing.getBilling_status().equals("1") || billing.getBilling_status() == null) {
+            return billingRepositoryFaturamentoHexagonal.save(billing);
+        } else {
+            FaturamentoStatusInvalidoException e = new FaturamentoStatusInvalidoException("Não foi possível processar o" +
+                    " faturamento pois o status é diferente de 1, billing_id: " + billing.getBilling_id().toString());
+            throw new FaturamentoStatusInvalidoException(e.getMessage());
+        }
     }
 
     @Override

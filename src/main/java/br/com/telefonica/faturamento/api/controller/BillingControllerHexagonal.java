@@ -32,7 +32,7 @@ public class BillingControllerHexagonal {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Faturamento addNewBilling(@RequestBody Faturamento billing) {
+	public Faturamento addNewBilling(@RequestBody Faturamento billing) throws Exception {
 		Faturamento billingSaved = billingService.save(billing);
 		return billingSaved;
 	}
