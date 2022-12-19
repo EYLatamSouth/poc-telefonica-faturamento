@@ -1,6 +1,10 @@
 package br.com.telefonica.faturamento.api.model;
 
+import org.apache.camel.language.simple.Simple;
+
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.*;
 
