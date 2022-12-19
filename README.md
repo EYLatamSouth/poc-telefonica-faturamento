@@ -8,6 +8,13 @@ POC microserviço de faturamento para a Telefonica
 mvn clean compile package
 ```
 
+or
+
+```
+./gradlew bootJar
+```
+
+
 
 ## Build docker
 
@@ -27,7 +34,7 @@ docker run -e "APPLICATIONINSIGHTS_CONNECTION_STRING=InstrumentationKey=a0326010
 ## Push docker
 
 ```
-docker image push crpoctelefonica.azurecr.io/ms-cobranca:latest
+docker image push crpoctelefonica.azurecr.io/ms-faturamento:latest
 ```
 
 `To push to ACR, login on your Docker Registry <crpoctelefonica>`
