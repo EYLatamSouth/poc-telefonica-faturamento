@@ -4,7 +4,8 @@ public enum ProblemType {
 
 	ERRO_DE_SISTEMA("/erro-de-sistema", "Erro de sistema"),
 	RECURSO_NAO_ENCONTRADO("/recurso-nao-encontrado", "Recurso não encontrado"),
-	ENTIDADE_EM_USO("/entidade-em-uso", "Entidade em uso");
+	ENTIDADE_EM_USO("/entidade-em-uso", "Entidade em uso"),
+	STATUS_INVALIDO("/status-invalido", "Status invalido");
 	
 	private String title;
 	private String uri;

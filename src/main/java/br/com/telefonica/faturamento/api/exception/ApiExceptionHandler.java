@@ -31,6 +31,17 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		Problem problem = createProblem(status, problemType, detail);
 		return super.handleExceptionInternal(ex, problem, null, status, request);
 	}
+
+	@ExceptionHandler(FaturamentoStatusInvalidoException.class)
+	public ResponseEntity<Object> handleEntityNotFound(FaturamentoStatusInvalidoException ex, WebRequest request) {
+
+		HttpStatus status = HttpStatus.NOT_FOUND;
+		ProblemType problemType = ProblemType.STATUS_INVALIDO;
+		String detail =  ex.getMessage();
+
+		Problem problem = createProblem(status, problemType, detail);
+		return super.handleExceptionInternal(ex, problem, null, status, request);
+	}
 	
 	public ResponseEntity<Object> handleUncaught(Exception ex, WebRequest request) {
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;

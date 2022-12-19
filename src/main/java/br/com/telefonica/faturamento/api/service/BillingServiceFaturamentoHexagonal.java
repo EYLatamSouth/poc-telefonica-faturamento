@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public interface BillingServiceFaturamentoHexagonal {
 	public void deleteBilling(Integer billingId);
-	public Faturamento save(Faturamento billing);
+	public Faturamento save(Faturamento billing) throws Exception;
 	public Faturamento findOrFail(Integer billingId);
 	public List<Faturamento> findAll();
 	public Faturamento updateBilling(Faturamento billing, Integer billingId);
